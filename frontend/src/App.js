@@ -6,6 +6,8 @@ import Signup from './pages/Signup';
 import ForgotPassword from "./pages/ForgotPassword";
 import OtpVerification from "./pages/OtpVerification";
 import ResetPassword from "./pages/ResetPassword";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 
 function App() {
@@ -19,6 +21,22 @@ function App() {
         <Route path="/otp" element={<OtpVerification />} />
         <Route path="/reset-password" element={<ResetPassword />} / >
       </Routes>
+       {/* ✅ Global Toast Notification Container */}
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        className="custom-toast-container"
+        toastClassName="custom-toast"
+        progressClassName="custom-toast-progress"
+      />
     </Router>
   );
 }
