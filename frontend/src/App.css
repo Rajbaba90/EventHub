@@ -18,23 +18,22 @@ button {
   cursor: pointer;
 }
 
-/* ===========================
-   Custom Toast Styles
-=========================== */
+
+
 .custom-toast {
-  background: #f2f2f2 !important;  /* Whitish-grey background */
-  color: #000 !important;          /* Black text */
+  background: #f2f2f2 !important;  
+  color: #000 !important;          
   font-weight: 600;
   border-radius: 8px !important;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
-  border-left: 4px solid #000 !important; /* Black side accent line */
-  text-align: center;              /* Clean center alignment */
+  border-left: 4px solid #000 !important; 
+  text-align: center;              
 }
 
 .custom-toast svg {
-  fill: #000 !important; /* Black tick/check icon */
+  fill: #000 !important; 
 }
 
 .custom-toast-progress {
-  background: #000 !important; /* Black progress bar */
+  background: #000 !important;
 }

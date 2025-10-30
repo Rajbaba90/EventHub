@@ -1,5 +1,4 @@
 
-
 // utils/sendEmail.js
 require('dotenv').config(); // Make sure to load .env
 const nodemailer = require("nodemailer");

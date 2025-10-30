@@ -25,10 +25,10 @@ export default function ResetPassword() {
       return;
     }
 
-    // ✅ Clear inline messages before showing toast
+    // Clear inline messages before showing toast
     setMessage("");
 
-    // ✅ Toast for success only
+    // Toast for success only
     toast.success("Password successfully reset !!", {
       autoClose: 1000,
       className: "custom-toast",
@@ -89,7 +89,7 @@ export default function ResetPassword() {
             </button>
           </form>
 
-          {/* ✅ Inline message for errors only */}
+          {/* Inline message for errors only */}
           {message && <div className="reset-message">{message}</div>}
         </div>
       </div>

@@ -44,7 +44,7 @@ export default function OtpVerification() {
       console.log("Verifying OTP:", otp);
       setIsVerifying(false);
 
-      // ✅ Show toast only for successful verification
+      // Show toast only for successful verification
       toast.success("OTP Verified Successfully !!", {
         autoClose: 1000,
         className: "custom-toast",
@@ -116,7 +116,7 @@ export default function OtpVerification() {
             </button>
           </form>
 
-          {/* ✅ Inline messages for resend/error only */}
+          {/* Inline messages for resend/error only */}
           {message && <div className="otp-message">{message}</div>}
 
           <div className="otp-resend-row">

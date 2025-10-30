@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
@@ -10,33 +13,45 @@ const ForgotPassword = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleSendOtp = (e) => {
+  const handleSendOtp = async (e) => {
     e.preventDefault();
 
-    // ✅ If email empty → show inline message only
     if (email.trim() === "") {
       setErrorMessage("Please enter your email.");
       return;
     }
 
-    // ✅ Clear inline error and show toast only
     setErrorMessage("");
-    console.log("OTP sent to:", email);
 
-    // ✅ Toast for success (closes in 1 second)
-    toast.success("OTP sent successfully. Check your email!", {
-      className: "custom-toast",
-      progressClassName: "custom-toast-progress",
-      icon: false,
-      autoClose: 800, // toast disappears faster (1 sec)
-    });
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
 
-    // Redirect to OTP page after delay
-    setTimeout(() => navigate("/otp"), 1200);
-  };
+      const data = await res.json();
 
-  const handleGoBack = () => {
-    navigate("/login");
+      if (res.ok) {
+        toast.success("📩 OTP sent successfully! Check your email.", {
+          position: "top-center",
+          autoClose: 1500,
+          theme: "colored",
+        });
+        setTimeout(() => navigate("/otp"), 1500);
+      } else {
+        toast.error(data.message || "Failed to send OTP.", {
+          position: "top-center",
+          theme: "colored",
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Server error. Try again later.", {
+        position: "top-center",
+        theme: "colored",
+      });
+    }
   };
 
   return (
@@ -65,15 +80,10 @@ const ForgotPassword = () => {
               Send OTP
             </button>
 
-            {/* ✅ Inline message ONLY for error */}
-            {errorMessage && (
-              <div className="forgot-message error-message">
-                {errorMessage}
-              </div>
-            )}
+            {errorMessage && <div className="forgot-message error-message">{errorMessage}</div>}
           </form>
 
-          <button className="go-back" onClick={handleGoBack}>
+          <button className="go-back" onClick={() => navigate("/login")}>
             Go Back
           </button>
         </div>

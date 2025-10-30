@@ -1,5 +1,5 @@
-// // models/User.js
 
+// models/User.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -7,16 +7,12 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   role: {
-  type: String,
- // enum: ['student', 'organizer', 'admin', 'STUDENT', 'ORGANIZER', 'ADMIN'],
- enum: ['STUDENT', 'COLLEGE_ADMIN', 'SUPER_ADMIN'],
-  default: 'student'
-}
-  // role: {
-  //   type: String,
-  //   enum: ['student', 'organizer', 'admin'],
-  //   default: 'student'
-  // }
+    type: String,
+    enum: ['STUDENT', 'ORGANIZER', 'COLLEGE_ADMIN', 'SUPER_ADMIN'],
+    default: 'STUDENT',
+  },
+  resetOTP: Number,
+  otpExpire: Date,
 });
 
 module.exports = mongoose.model('User', userSchema);
